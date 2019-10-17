@@ -6,34 +6,37 @@ This plugin allows you to define responses for given endpoints on a guzzle level
 ## How to use
 
 All you have to do is set the mock handler on guzzle constructor and starting mock your endpoints.
+
 ```
 <?php
 
-namespace Tests\Integration\Something;
-  
+namespace Tests\Feature;
+
 use GuzzleEndpointMock\Plugin\Endpoint;
 use GuzzleEndpointMock\Plugin\EndpointAwareMockHandler;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
-class MyTest extends TestCase
+class MockTest extends TestCase
 {
     /** @var EndpointAwareMockHandler */
     private $handler;
 
-    /** @var Client */
-    private $client;
+    /** @var MyClassUsingGuzzle */
+    private $service;
 
     protected function setUp(): void
     {
         $this->handler = new EndpointAwareMockHandler();
 
-        $this->client = new Client([
+        $client = new Client([
             'handler' => HandlerStack::create($this->handler),
             'http_errors' => false,
         ]);
+
+        $this->service = new MyClassUsingGuzzle($client);
     }
 
     public function testSomething(): void
@@ -42,8 +45,8 @@ class MyTest extends TestCase
             new Endpoint('GET', '/users/123', new Response(200, [], '{"body":"anything"}'))
         );
 
-	// the thing you are testing which uses guzzle to call `/users/123` endpoint
-        $this->theThingImTesting->doSomething();
+        // the thing you are testing which uses guzzle to call `/users/123` endpoint
+        $this->service->doSomething();
 
         ...
     }
