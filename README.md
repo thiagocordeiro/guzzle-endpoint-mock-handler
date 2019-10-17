@@ -7,7 +7,7 @@ This plugin allows you to define responses for given endpoints on a guzzle level
 
 All you have to do is set the mock handler on guzzle constructor and starting mock your endpoints.
 ```
-<?php declare(strict_types=1);
+<?php
 
 namespace Tests\Integration\Something;
   
@@ -42,7 +42,7 @@ class MyTest extends TestCase
             new Endpoint('GET', '/users/123', new Response(200, [], '{"body":"anything"}'))
         );
 
-		// the thing you are testing which uses guzzle to call `/users/123` endpoint
+	// the thing you are testing which uses guzzle to call `/users/123` endpoint
         $this->theThingImTesting->doSomething();
 
         ...
