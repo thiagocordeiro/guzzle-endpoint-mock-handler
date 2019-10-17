@@ -25,7 +25,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
-class MockTest extends TestCase
+class MyClassUsingGuzzleTest extends TestCase
 {
     /** @var EndpointAwareMockHandler */
     private $handler;
