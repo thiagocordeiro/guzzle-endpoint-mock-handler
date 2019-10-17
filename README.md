@@ -20,7 +20,7 @@ $handler->append(
 );
 
 $client = new \GuzzleHttp\Client([
-    'handler' => \GuzzleHttp\HandlerStack::create(\GuzzleEndpointMock\Plugin\EndpointAwareMockHandler),
+    'handler' => \GuzzleHttp\HandlerStack::create(new \GuzzleEndpointMock\Plugin\EndpointAwareMockHandler()),
     'http_errors' => false,
 ]);
 
