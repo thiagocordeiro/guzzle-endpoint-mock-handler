@@ -3,6 +3,12 @@
 This plugin allows you to define responses for given endpoints on a guzzle level, it means you can run your tests without mocking guzzle itself.
 
 
+## How to install
+
+```
+composer require thiagocordeiro/guzzle-endpoint-mock-handler --dev
+```
+
 ## How to use
 
 All you have to do is set the mock handler on guzzle constructor and starting mock your endpoints.
@@ -17,7 +23,7 @@ use GuzzleEndpointMock\Plugin\EndpointAwareMockHandler;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class MockTest extends TestCase
 {
