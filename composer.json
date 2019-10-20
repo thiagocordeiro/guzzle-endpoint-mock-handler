@@ -2,6 +2,13 @@
   "name": "thiagocordeiro/guzzle-endpoint-mock-handler",
   "description": "Guzzle handler to mock endpoints on tests",
   "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Thiago Cordeiro",
+      "email": "thiagoguetten@gmail.com"
+    }
+  ],
   "require": {
     "php": ">=7.2.0",
     "guzzlehttp/guzzle": "^6.3"
