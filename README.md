@@ -14,13 +14,17 @@ composer require thiagocordeiro/guzzle-endpoint-mock-handler --dev
 All you have to do is set the mock handler on guzzle constructor and starting mock your endpoints.
 
 ```
-$handler = new \GuzzleEndpointMock\Plugin\EndpointAwareMockHandler();
-$handler->append(
-    new \GuzzleEndpointMock\Plugin\Endpoint('GET', '/users/123', new \GuzzleHttp\Psr7\Response(200, [], '{"body":"anything"}'))
-);
+use GuzzleEndpointMock\Plugin\EndpointAwareMockHandler;
+use GuzzleEndpointMock\Plugin\Endpoint;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\HandlerStack;
 
-$client = new \GuzzleHttp\Client([
-    'handler' => \GuzzleHttp\HandlerStack::create(new \GuzzleEndpointMock\Plugin\EndpointAwareMockHandler()),
+$handler = new EndpointAwareMockHandler();
+$handler->append(new Endpoint('GET', '/users/123', new Response(200, [], '{"body":"anything"}')));
+
+$client = new HttpClient([
+    'handler' => HandlerStack::create($handler),
     'http_errors' => false,
 ]);
 
